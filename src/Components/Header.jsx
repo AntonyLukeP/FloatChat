@@ -14,6 +14,32 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleModuleChange = (event) => {
+    const selectedModule = event.target.value;
+    
+    if (selectedModule && selectedModule !== 'modules') {
+      const element = document.getElementById(selectedModule);
+      if (element) {
+        // Add offset for fixed header (64px = h-16)
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    } else if (selectedModule === 'modules') {
+      // Scroll to the modules overview section
+      const element = document.getElementById('modules');
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
       isScrolled 
@@ -44,14 +70,15 @@ export const Header = () => {
                 name="modules" 
                 id="modules"
                 defaultValue="modules"
-                className={`appearance-none text-white px-4 py-2 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 hover:bg-white/20 cursor-pointer ${
+                onChange={handleModuleChange}
+                className={`appearance-none bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 hover:bg-white/20 cursor-pointer ${
                   isScrolled ? 'bg-white/15' : 'bg-white/10'
                 }`}
               >
-                <option value="modules" className="bg-blue-900 text-white">Modules</option>
+                <option value="modules" className="bg-blue-900 text-white">All Modules</option>
                 <option value="marine-navigation" className="bg-blue-900 text-white">Marine Navigation</option>
                 <option value="coastal-livelihood" className="bg-blue-900 text-white">Coastal Livelihood</option>
-                <option value="research" className="bg-blue-900 text-white">Research</option>
+                <option value="research" className="bg-blue-900 text-white">Marine Research</option>
               </select>
               
               {/* Custom Dropdown Arrow */}
