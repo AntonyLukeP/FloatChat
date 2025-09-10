@@ -533,7 +533,7 @@ export const Dashboard = () => {
                   </p>
                   
                   <motion.button
-                    onClick={() => handleModuleNavigation('marine-navigation')}
+                    onClick={() => navigate('/marine-navigation')}
                     className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 overflow-hidden"
                     style={{
                       boxShadow: '0 20px 40px -12px rgba(6, 182, 212, 0.4), 0 8px 25px -8px rgba(0, 0, 0, 0.3)',
@@ -610,7 +610,7 @@ export const Dashboard = () => {
                   </p>
                   
                   <motion.button
-                    onClick={() => handleModuleNavigation('coastal-livelihood')}
+                    onClick={() => navigate('/coastal-livelihood')}
                     className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 overflow-hidden"
                     style={{
                       boxShadow: '0 20px 40px -12px rgba(59, 130, 246, 0.4), 0 8px 25px -8px rgba(0, 0, 0, 0.3)',
@@ -688,7 +688,7 @@ export const Dashboard = () => {
                   </p>
                   
                   <motion.button
-                    onClick={() => handleModuleNavigation('research')}
+                    onClick={() => navigate('/marine-research')}
                     className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 overflow-hidden"
                     style={{
                       boxShadow: '0 20px 40px -12px rgba(147, 51, 234, 0.4), 0 8px 25px -8px rgba(0, 0, 0, 0.3)',
@@ -715,43 +715,84 @@ export const Dashboard = () => {
           </div>
         </section>
 
-        {/* All Modules Overview */}
-        <section id="modules" className="mb-20">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <FaWater className="text-5xl text-teal-400 mx-auto mb-4" />
-              <h2 className="text-4xl font-bold text-white mb-4">Complete Ocean Intelligence Suite</h2>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                Integrated solutions for comprehensive ocean management and exploration
-              </p>
-            </div>
+        
+        {/* Simple About Us Section */}
+        <section id="about" className="w-full py-16">
+          <div className="max-w-4xl mx-auto px-6 text-center">
             
-            <div className="grid md:grid-cols-3 gap-8">
-              <QuickAccessCard 
-                icon={<FaAnchor />}
-                title="Marine Navigation"
-                description="Smart navigation for all maritime sectors"
-                color="cyan"
-                onClick={() => handleModuleNavigation('marine-navigation')}
-              />
-              <QuickAccessCard 
-                icon={<FaFish />}
-                title="Coastal Livelihood"
-                description="Sustainable coastal development"
-                color="blue"
-                onClick={() => handleModuleNavigation('coastal-livelihood')}
-              />
-              <QuickAccessCard 
-                icon={<FaSearch />}
-                title="Marine Research"
-                description="Advanced ocean analytics"
-                color="purple"
-                onClick={() => handleModuleNavigation('research')}
-              />
-            </div>
+            {/* Header */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <FaInfoCircle className="text-4xl text-cyan-400 mx-auto mb-4" />
+              <h2 className="text-4xl font-bold text-white mb-4">About FloatChat</h2>
+              <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+                AI-powered ocean intelligence platform for marine navigation, coastal development, and research
+              </p>
+            </motion.div>
+
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-slate-800/30 backdrop-blur-md rounded-2xl p-8 border border-slate-700/30"
+            >
+              <div className="grid md:grid-cols-2 gap-8 text-left">
+                
+                {/* Contact Info */}
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-4">Get in Touch</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <FaEnvelope className="text-cyan-400" />
+                      <span className="text-slate-300">contact@floatchat.com</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <FaGlobe className="text-blue-400" />
+                      <span className="text-slate-300">www.floatchat.com</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Company Info */}
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-4">Company Info</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-slate-400 text-sm">Industry:</span>
+                      <p className="text-slate-300">Marine Technology & AI</p>
+                    </div>
+                    <div>
+                      <span className="text-slate-400 text-sm">Founded:</span>
+                      <p className="text-slate-300">2024</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-6 pt-6 border-t border-slate-700/30">
+                <div className="flex justify-center space-x-4">
+                  <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                    <FaLinkedin className="text-xl" />
+                  </a>
+                  <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
+                    <FaTwitter className="text-xl" />
+                  </a>
+                  <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">
+                    <FaGithub className="text-xl" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </section>
-      </div>
+       </div>
       
       </div>
     </>
